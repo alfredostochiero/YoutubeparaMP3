@@ -1,6 +1,7 @@
 import pafy  
 import glob
 import os
+import moviepy.editor as mp
 from tkinter import *
 
 window = Tk()
@@ -17,22 +18,22 @@ txt.grid(column=1,row=0)
 
 
 def clicked():
+    try :
 
-    diretorio = os.path.dirname(os.path.abspath(__file__))
-    
-    url = txt.get()
-    
+        diretorio = os.path.dirname(os.path.abspath(__file__))
+        
+        url = txt.get()
+        
 
-    video = pafy.new(url) 
-    title = video.title
+        video = pafy.new(url) 
+        title = video.title
 
-    lbl.configure(text=title+' baixado com sucesso !! ')
+        lbl.configure(text=title+' baixado com sucesso !! ')
 
-    bestaudio = video.getbestaudio() 
-    bestaudio.download(filepath=diretorio+"/Musicas") 
-
-
-
+        bestaudio = video.getbestaudio() 
+        bestaudio.download(filepath=diretorio+"/Musicas")  
+    except :
+        lbl.configure(text='Erro ao tentar baixar Mp3! Tente outro link')
 
 
 
